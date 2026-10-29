@@ -1,0 +1,40 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block content %}
+<div class="admin-dashboard">
+  <div class="dashboard-header">
+    <p class="dashboard-kicker">Tableau de bord</p>
+    <h1>Gestion PRAM-S</h1>
+    <p class="dashboard-subtitle">Suivi rapide des demandes, réalisations, services et messages.</p>
+  </div>
+
+  {% if app_list %}
+    {% for app in app_list %}
+      <section class="admin-app-group">
+        <div class="admin-app-header">
+          <h2>{{ app.name }}</h2>
+        </div>
+
+        <div class="admin-model-grid">
+          {% for model in app.models %}
+            <a href="{{ model.admin_url }}" class="admin-model-card">
+              <span class="model-badge">{{ model.name|slice:':1'|upper }}</span>
+              <div class="model-info">
+                <strong>{{ model.name }}</strong>
+                {% if model.add_url %}
+                  <small>Gérer</small>
+                {% else %}
+                  <small>Voir</small>
+                {% endif %}
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      </section>
+    {% endfor %}
+  {% else %}
+    <p>{% trans 'You don’t have permission to view or edit anything.' %}</p>
+  {% endif %}
+</div>
+{% endblock %}

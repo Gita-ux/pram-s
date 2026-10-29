@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Nos réalisations — PRAM-S{% endblock %}
+
+{% block content %}
+<section class="page-banner">
+  <div class="container">
+    <p class="breadcrumb"><a href="{% url 'core:home' %}">Accueil</a> / Réalisations</p>
+    <h1>Des chantiers réels. Des solutions concrètes.</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="filters" data-reveal>
+      <button class="filter-btn is-active" data-filter="all">Toutes</button>
+      {% for value, label in categories %}
+        <button class="filter-btn" data-filter="{{ value }}">{{ label }}</button>
+      {% endfor %}
+    </div>
+
+    <div class="realisations-grid" data-reveal data-reveal-delay="1">
+      {% for r in realisations %}
+        <a href="{{ r.get_absolute_url }}" class="realisation-card" data-category="{{ r.categorie }}">
+          <img src="{% if r.image_principale %}{{ r.image_principale.url }}{% else %}https://placehold.co/400x520/171a1c/e5a900?text=Chantier{% endif %}" alt="{{ r.titre }}">
+          <div class="realisation-card__overlay">
+            <span class="realisation-card__cat">{{ r.get_categorie_display }}</span>
+            <span class="realisation-card__title">{{ r.titre }}</span>
+          </div>
+        </a>
+      {% empty %}
+        <p>Aucune réalisation n'est encore publiée. Ajoutez vos chantiers depuis l'espace d'administration.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="container">
+    <h2 data-reveal>Vous avez un projet similaire ?</h2>
+    <p data-reveal data-reveal-delay="1">Envoyez-nous les informations de votre chantier ainsi que quelques photos. Notre équipe pourra étudier votre besoin.</p>
+    <a href="{% url 'devis:request' %}" class="btn btn--accent btn--lg" data-reveal data-reveal-delay="2">Demander un devis <i class="bi bi-arrow-right"></i></a>
+  </div>
+</section>
+{% endblock %}

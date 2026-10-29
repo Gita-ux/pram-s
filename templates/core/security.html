@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}Sécurité — PRAM-S{% endblock %}
+
+{% block content %}
+<section class="page-banner">
+  <div class="container">
+    <p class="breadcrumb"><a href="{% url 'core:home' %}">Accueil</a> / Sécurité</p>
+    <h1>La sécurité avant tout</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width:820px; text-align:center;">
+    <p data-reveal style="font-size:1.1rem; color:var(--c-white);">
+      Les travaux en hauteur et les interventions sur corde nécessitent une préparation
+      rigoureuse. Un chantier réussi est un chantier réalisé efficacement et en sécurité.
+    </p>
+  </div>
+</section>
+
+<section class="section section--anthracite">
+  <div class="container">
+    <div class="services-grid">
+      {% for item in "12345678" %}{% endfor %}
+      <div class="service-card" data-reveal>
+        <div class="service-card__icon"><i class="bi bi-search"></i></div>
+        <h3>Analyse des risques</h3>
+        <p>Identification des dangers spécifiques à chaque chantier avant toute intervention.</p>
+      </div>
+      <div class="service-card" data-reveal data-reveal-delay="1">
+        <div class="service-card__icon"><i class="bi bi-clipboard-check"></i></div>
+        <h3>Préparation du chantier</h3>
+        <p>Organisation méthodique des accès, des équipements et des zones de travail.</p>
+      </div>
+      <div class="service-card" data-reveal data-reveal-delay="2">
+        <div class="service-card__icon"><i class="bi bi-tools"></i></div>
+        <h3>Choix des équipements adaptés</h3>
+        <p>Sélection du matériel technique en fonction des contraintes du site.</p>
+      </div>
+      <div class="service-card" data-reveal>
+        <div class="service-card__icon"><i class="bi bi-patch-check"></i></div>
+        <h3>Vérification du matériel</h3>
+        <p>Contrôle systématique avant chaque utilisation.</p>
+      </div>
+      <div class="service-card" data-reveal data-reveal-delay="1">
+        <div class="service-card__icon"><i class="bi bi-signpost-split"></i></div>
+        <h3>Organisation des accès</h3>
+        <p>Sécurisation des voies de circulation et des points d'ancrage.</p>
+      </div>
+      <div class="service-card" data-reveal data-reveal-delay="2">
+        <div class="service-card__icon"><i class="bi bi-shield-lock"></i></div>
+        <h3>Sécurisation des zones</h3>
+        <p>Délimitation et protection des zones d'intervention.</p>
+      </div>
+      <div class="service-card" data-reveal>
+        <div class="service-card__icon"><i class="bi bi-chat-dots"></i></div>
+        <h3>Communication entre intervenants</h3>
+        <p>Coordination constante entre les équipes sur le terrain.</p>
+      </div>
+      <div class="service-card" data-reveal data-reveal-delay="1">
+        <div class="service-card__icon"><i class="bi bi-exclamation-triangle"></i></div>
+        <h3>Gestion des urgences</h3>
+        <p>Procédures définies pour réagir rapidement en cas d'imprévu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--light">
+  <div class="container" style="max-width:760px; text-align:center;">
+    <span class="eyebrow" style="justify-content:center;">Notre objectif</span>
+    <h2>Réaliser chaque intervention avec une méthode adaptée aux risques et aux contraintes du chantier.</h2>
+    <p style="margin-top:20px; font-size:0.85rem;">
+      Les informations relatives aux équipements, certifications, procédures et normes
+      sont validées par PRAM-S avant publication.
+    </p>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="container">
+    <h2 data-reveal>Un chantier exigeant ? <span class="accent">Parlons-en.</span></h2>
+    <a href="{% url 'devis:request' %}" class="btn btn--accent btn--lg" data-reveal data-reveal-delay="1">Demander un devis <i class="bi bi-arrow-right"></i></a>
+  </div>
+</section>
+{% endblock %}

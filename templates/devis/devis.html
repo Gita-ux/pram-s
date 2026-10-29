@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}Demander un devis — PRAM-S{% endblock %}
+
+{% block extra_css %}
+<style>
+  .file-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--c-dark); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px; padding: 6px 14px; font-size: 0.78rem;
+    margin: 4px 6px 0 0; color: var(--c-white);
+  }
+  #file-preview { display: flex; flex-wrap: wrap; margin-top: 8px; }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="page-banner">
+  <div class="container">
+    <p class="breadcrumb"><a href="{% url 'core:home' %}">Accueil</a> / Demander un devis</p>
+    <h1>Parlez-nous de votre projet</h1>
+    <p style="max-width:600px; margin:14px auto 0;">
+      Décrivez votre projet et joignez quelques photos. Notre équipe analysera votre demande
+      afin de vous proposer une solution adaptée.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width:900px;">
+    <div class="form-card" data-reveal>
+      <form method="post" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+
+        <h3 style="margin-bottom:20px;"><i class="bi bi-person-badge" style="color:var(--c-accent);"></i> Vos coordonnées</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="{{ form.nom.id_for_label }}">Nom / entreprise</label>
+            {{ form.nom }}
+            {{ form.nom.errors }}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.telephone.id_for_label }}">Téléphone</label>
+            {{ form.telephone }}
+            {{ form.telephone.errors }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{ form.email.id_for_label }}">E-mail</label>
+          {{ form.email }}
+          {{ form.email.errors }}
+        </div>
+
+        <h3 style="margin:34px 0 20px;"><i class="bi bi-geo-alt" style="color:var(--c-accent);"></i> Le chantier</h3>
+        <div class="form-group">
+          <label for="{{ form.localisation.id_for_label }}">Localisation du chantier</label>
+          {{ form.localisation }}
+          {{ form.localisation.errors }}
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="{{ form.type_travaux.id_for_label }}">Type de travaux</label>
+            {{ form.type_travaux }}
+            {{ form.type_travaux.errors }}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.date_souhaitee.id_for_label }}">Date souhaitée d'intervention</label>
+            {{ form.date_souhaitee }}
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="{{ form.dimensions.id_for_label }}">Dimensions approximatives</label>
+            {{ form.dimensions }}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.hauteur.id_for_label }}">Hauteur de travail</label>
+            {{ form.hauteur }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{ form.informations_techniques.id_for_label }}">Informations techniques disponibles</label>
+          {{ form.informations_techniques }}
+        </div>
+        <div class="form-group">
+          <label for="{{ form.message.id_for_label }}">Message libre</label>
+          {{ form.message }}
+        </div>
+
+        <h3 style="margin:34px 0 20px;"><i class="bi bi-camera" style="color:var(--c-accent);"></i> Photos ou vidéos du chantier</h3>
+        <div class="form-group">
+          {{ form.fichiers }}
+          <span class="helptext">{{ form.fichiers.help_text }}</span>
+          {{ form.fichiers.errors }}
+          <div id="file-preview"></div>
+        </div>
+
+        <button type="submit" class="btn btn--accent btn--lg btn--block" style="margin-top:20px;">
+          Envoyer ma demande de devis <i class="bi bi-send"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

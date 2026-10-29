@@ -1,0 +1,250 @@
+:root {
+  --admin-bg: #0b0d0e;
+  --admin-panel: #121619;
+  --admin-panel-alt: #181d20;
+  --admin-soft: #1d2428;
+  --admin-border: rgba(255,255,255,0.08);
+  --admin-text: #edf3f7;
+  --admin-muted: #a4afba;
+  --admin-accent: #e5a900;
+  --admin-accent-soft: rgba(229, 169, 0, 0.12);
+  --admin-success: #4ade80;
+  --admin-warning: #fbbf24;
+}
+
+body {
+  background: var(--admin-bg);
+  color: var(--admin-text);
+}
+
+#header {
+  background: linear-gradient(180deg, #111417, #0d1113);
+  border-bottom: 1px solid var(--admin-border);
+}
+
+#branding h1,
+#site-name {
+  color: var(--admin-text) !important;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+#branding a,
+#site-name a {
+  color: var(--admin-text);
+  text-decoration: none;
+}
+
+.module h2,
+.module caption,
+.app-list h2,
+.app-list .module h2 {
+  color: var(--admin-text);
+}
+
+.module,
+.app-list .module,
+.change-list,
+.change-form {
+  background: var(--admin-panel);
+  border: 1px solid var(--admin-border);
+  border-radius: 14px;
+  box-shadow: none;
+}
+
+.module h2,
+.module caption {
+  background: var(--admin-accent-soft);
+  color: var(--admin-accent);
+  border-bottom: 1px solid var(--admin-border);
+}
+
+#toolbar,
+#changelist-filter,
+#user-tools {
+  background: var(--admin-panel-alt);
+  border-color: var(--admin-border);
+}
+
+#nav-sidebar,
+#content,
+#main {
+  background: transparent;
+}
+
+.button, input[type="submit"], input[type="button"], .submit-row input {
+  background: var(--admin-accent);
+  color: #101315;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  padding: 10px 18px;
+}
+
+.button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+  background: #f7bd2d;
+}
+
+.admin-dashboard {
+  display: grid;
+  gap: 24px;
+  padding: 18px 0 30px;
+}
+
+.dashboard-header {
+  background: linear-gradient(135deg, rgba(229,169,0,0.08), rgba(17,20,23,0.4));
+  border: 1px solid var(--admin-border);
+  border-radius: 18px;
+  padding: 26px 28px;
+}
+
+.dashboard-kicker {
+  margin: 0 0 8px;
+  color: var(--admin-accent);
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 2.1rem;
+  color: var(--admin-text);
+}
+
+.dashboard-subtitle {
+  margin: 10px 0 0;
+  color: var(--admin-muted);
+  font-size: 0.95rem;
+}
+
+.admin-app-group {
+  background: var(--admin-panel);
+  border: 1px solid var(--admin-border);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.admin-app-header {
+  margin-bottom: 16px;
+}
+
+.admin-app-header h2 {
+  margin: 0;
+  color: var(--admin-text);
+  font-size: 1.1rem;
+}
+
+.admin-model-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.admin-model-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  background: var(--admin-panel-alt);
+  border: 1px solid var(--admin-border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--admin-text);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.admin-model-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(229, 169, 0, 0.5);
+  text-decoration: none;
+}
+
+.model-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--admin-accent-soft);
+  color: var(--admin-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+
+.model-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.model-info strong {
+  font-size: 0.96rem;
+}
+
+.model-info small {
+  color: var(--admin-muted);
+}
+
+.object-tools a,
+.inline-related .add-row a,
+.addlink {
+  color: var(--admin-accent);
+}
+
+th a,
+.pagination a,
+.paginator a {
+  color: var(--admin-accent);
+}
+
+.change-list table,
+.change-form form,
+.module table,
+.inline-group {
+  background: var(--admin-panel);
+  color: var(--admin-text);
+}
+
+thead th,
+thead td {
+  background: #1a2125;
+  color: var(--admin-text);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  background: #0e1215;
+  border: 1px solid var(--admin-border);
+  color: var(--admin-text);
+  border-radius: 8px;
+}
+
+label,
+.help,
+.fieldset .help {
+  color: var(--admin-muted);
+}
+
+#content-related {
+  background: transparent;
+}
+
+@media (max-width: 768px) {
+  .admin-model-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-header {
+    padding: 20px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.6rem;
+  }
+}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Nos services — PRAM-S{% endblock %}
+
+{% block content %}
+<section class="page-banner">
+  <div class="container">
+    <p class="breadcrumb"><a href="{% url 'core:home' %}">Accueil</a> / Services</p>
+    <h1>Nos services</h1>
+    <p style="max-width:600px; margin:14px auto 0;">Une expertise polyvalente pour chaque défi technique en hauteur et en accès difficile.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="services-grid">
+      {% for service in services %}
+        <div
+          class="service-card"
+          data-reveal
+          data-reveal-delay="{{ forloop.counter0|divisibleby:3|yesno:'0,1' }}"
+          {% if service.image %}
+            style="background-image: linear-gradient(180deg, rgba(11,13,14,0.18) 0%, rgba(11,13,14,0.82) 100%), url('{{ service.image.url }}'); background-size: cover; background-position: center;"
+          {% endif %}
+        >
+          <span class="service-card__num">{{ service.numero|stringformat:"02d" }}</span>
+          <div class="service-card__icon"><i class="bi {{ service.icone }}"></i></div>
+          <h3>{{ service.titre }}</h3>
+          <p>{{ service.description_courte }}</p>
+          <a href="{{ service.get_absolute_url }}" class="service-card__link">En savoir plus <i class="bi bi-arrow-right"></i></a>
+        </div>
+      {% empty %}
+        <p>Aucun service n'est encore publié. Ajoutez-les depuis l'espace d'administration Django.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="container">
+    <h2 data-reveal>Un besoin spécifique ? <span class="accent">Discutons-en.</span></h2>
+    <a href="{% url 'devis:request' %}" class="btn btn--accent btn--lg" data-reveal data-reveal-delay="1">Demander un devis <i class="bi bi-arrow-right"></i></a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ company.name }} — {{ company.full_name }}{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}PRAM-S, Pro Rope Access Multi : travaux en hauteur, travaux sur corde, structures métalliques, bardage, étanchéité et maintenance industrielle au Cameroun.{% endblock %}">
+  <meta name="keywords" content="cordiste Cameroun, travaux en hauteur Cameroun, travaux sur corde, nettoyage façade, maintenance industrielle Cameroun, structures métalliques, bardage, étanchéité">
+
+  <!-- Polices & icônes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="{% url 'core:home' %}" class="brand" aria-label="PRAM-S">
+        <img src="{% static 'img/logo.jpg' %}" alt="Logo PRAM-S" class="brand__logo">
+        <span class="brand__text">
+          <span class="brand__name">PRAM-S</span>
+          <span class="brand__tagline">PRO ROPE ACCESS MULTI SERVICES</span>
+        </span>
+      </a>
+
+      <nav class="nav">
+        <a href="{% url 'core:home' %}" class="nav__link {% if request.resolver_match.url_name == 'home' %}is-active{% endif %}">Accueil</a>
+        <a href="{% url 'core:about' %}" class="nav__link {% if request.resolver_match.url_name == 'about' %}is-active{% endif %}">À propos</a>
+        <a href="{% url 'services:list' %}" class="nav__link {% if 'services' in request.resolver_match.namespace %}is-active{% endif %}">Services</a>
+        <a href="{% url 'realisations:list' %}" class="nav__link {% if 'realisations' in request.resolver_match.namespace %}is-active{% endif %}">Réalisations</a>
+        <a href="{% url 'core:security' %}" class="nav__link {% if request.resolver_match.url_name == 'security' %}is-active{% endif %}">Sécurité</a>
+        <a href="{% url 'core:contact' %}" class="nav__link {% if request.resolver_match.url_name == 'contact' %}is-active{% endif %}">Contact</a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="{% url 'devis:request' %}" class="btn btn--accent">
+          Demander un devis <i class="bi bi-arrow-right"></i>
+        </a>
+        <button class="burger" aria-label="Ouvrir le menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    {% if messages %}
+      <div class="container" style="padding-top: 140px;">
+        {% for message in messages %}
+          <div class="alert {% if message.tags == 'success' %}alert--success{% else %}alert--error{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include "includes/footer.html" %}
+
+  <div class="floating-actions">
+    <a class="floating-btn floating-btn--whatsapp" title="WhatsApp"
+       href="https://wa.me/{{ company.whatsapp }}" target="_blank" rel="noopener">
+      <i class="bi bi-whatsapp"></i>
+    </a>
+    <a class="floating-btn floating-btn--call" title="Appeler" href="tel:{{ company.phone }}">
+      <i class="bi bi-telephone-fill"></i>
+    </a>
+  </div>
+
+  <script src="{% static 'js/main.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

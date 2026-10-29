@@ -1,0 +1,58 @@
+{% load static %}
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <a href="{% url 'core:home' %}" class="brand" style="margin-bottom:16px;">
+          <span class="brand__mark">PS</span>
+          <span class="brand__text">
+            <span class="brand__name">PRAM-S</span>
+            <span class="brand__tagline">Pro Rope Access Multi</span>
+          </span>
+        </a>
+        <p class="footer__desc">{{ company.slogan }}</p>
+        <div class="footer__socials">
+          <a href="{{ company.facebook }}" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="{{ company.instagram }}" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="{{ company.linkedin }}" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="https://wa.me/{{ company.whatsapp }}" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h5>Liens rapides</h5>
+        <ul>
+          <li><a href="{% url 'core:home' %}">Accueil</a></li>
+          <li><a href="{% url 'core:about' %}">À propos</a></li>
+          <li><a href="{% url 'services:list' %}">Services</a></li>
+          <li><a href="{% url 'realisations:list' %}">Réalisations</a></li>
+          <li><a href="{% url 'core:contact' %}">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Nos services</h5>
+        <ul>
+          <li><a href="{% url 'services:list' %}">Travaux d'accès difficile</a></li>
+          <li><a href="{% url 'services:list' %}">Structures métalliques</a></li>
+          <li><a href="{% url 'services:list' %}">Bardage & couverture</a></li>
+          <li><a href="{% url 'services:list' %}">Étanchéité</a></li>
+          <li><a href="{% url 'services:list' %}">Maintenance industrielle</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Contactez-nous</h5>
+        <div class="footer__contact-item"><i class="bi bi-telephone"></i> {{ company.phone }}</div>
+        <div class="footer__contact-item"><i class="bi bi-whatsapp"></i> {{ company.phone }}</div>
+        <div class="footer__contact-item"><i class="bi bi-envelope"></i> {{ company.email }}</div>
+        <div class="footer__contact-item"><i class="bi bi-geo-alt"></i> {{ company.zone }}</div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>&copy; {% now "Y" %} PRAM-S — Tous droits réservés.</span>
+      <span>{{ company.slogan }}</span>
+    </div>
+  </div>
+</footer>

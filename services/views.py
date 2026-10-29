@@ -1,0 +1,18 @@
+from django.shortcuts import get_object_or_404, render
+
+from .models import Service
+
+
+def service_list(request):
+    services = Service.objects.filter(actif=True).order_by("numero")
+    return render(request, "services/list.html", {"services": services})
+
+
+def service_detail(request, slug):
+    service = get_object_or_404(Service, slug=slug, actif=True)
+    autres_services = Service.objects.filter(actif=True).exclude(pk=service.pk)[:3]
+    return render(
+        request,
+        "services/detail.html",
+        {"service": service, "autres_services": autres_services},
+    )
