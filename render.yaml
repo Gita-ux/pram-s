@@ -1,0 +1,32 @@
+databases:
+  - name: pram-s-db
+    plan: free
+    databaseName: pram_s
+    user: pram_s
+
+services:
+  - type: web
+    name: pram-s-site
+    runtime: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --no-input && python manage.py migrate && (python manage.py createsuperuser --noinput || true)"
+    startCommand: "gunicorn pram_s.wsgi:application"
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DJANGO_ALLOWED_HOSTS
+        value: "pram-s-site.onrender.com"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: pram-s-db
+          property: connectionString
+      - key: PYTHON_VERSION
+        value: "3.12.3"
+      - key: DJANGO_SUPERUSER_USERNAME
+        sync: false
+      - key: DJANGO_SUPERUSER_EMAIL
+        sync: false
+      - key: DJANGO_SUPERUSER_PASSWORD
+        sync: false
